@@ -16,17 +16,23 @@ export const STARTUP_QUERY =
 }`);
 
 export const FETCH_STARTUP_BY_ID_QUERY =
-  defineQuery(`*[_type=='startup' && _id==$id]{
+  defineQuery(`*[_type=='startup' && _id==$id][0]{
   _id,
   title,
   slug,
   _createdAt,
   author->{
-      _id,name,slug,image,bio
+      _id,name,userName,slug,image,bio
   },
   views,
   description,
   category,
   image,
     pitch
+}`);
+
+export const FETCH_STARTUP_VIEWS_BY_ID =
+  defineQuery(`*[_type=='startup' && _id==$id][0]{
+  _id,
+  views, 
 }`);
